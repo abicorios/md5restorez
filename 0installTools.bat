@@ -15,3 +15,4 @@ where vim /q
 if not %errorlevel%==0 (start https://ftp.nluug.nl/pub/vim/pc/gvim81.exe)
 @set /p a=It is a pause, press Enter after an installation of vim
 @set a=
+call refreshenv
