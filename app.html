@@ -65,13 +65,13 @@ reg=/^[a-zA-Z]:([\\/][^\\/<>:"|?*]+)+[\\/]?$/;
 regCsv=/^[a-zA-Z]:([\\/][^\\/<>:"|?*]+)+\.csv$/;
 if (!checkInput(document.getElementById("myto").value)){alert(`Введите правильный путь к пустой папке ${myto}.`);return 0;}
 if (!checkInput(document.getElementById("myfrom").value)){alert("Введите правильный путь к папке для сканирования.");return 0;}
-if (!checkInputCsv(document.getElementById("mycsv").value)){alert("Введите правильный путь к csv-файлу");return 0;}
+if (!checkInputCsv(document.getElementById("mycsv").files[0])){alert("Введите правильный путь к csv-файлу");return 0;}
 if(!fs.existsSync(document.getElementById("myto").value)){alert(`Папка ${document.getElementById("myto").value} не существует, введите путь к существующей папке`);
-	if(fs.readdirSync(document.getElementById("myto").value).length!==0){alert(`Папка ${document.getElementById("myto").value} не пустая, укажите пустую папку для записи результата.`};};
+	if(fs.readdirSync(document.getElementById("myto").value).length!==0){alert(`Папка ${document.getElementById("myto").value} не пустая, укажите пустую папку для записи результата.`)};};
 //mylittlerun(`${process.cwd()}/resources/app/md5scannerzgo.exe`,["mytype",document.getElementById("myto").value],function(){},function(data){alert(`Папка ${document.getElementById("myto").value} не существует, введите путь к существующей папке`)},function(){});
 //mylittlerun(`${process.cwd()}/resources/app/md5scannerzgo.exe`,["myfiles",document.getElementById("myto").value],function(data){if(data.length>1){alert(`Папка ${document.getElementById("myto").value} не пустая, укажите пустую папку для записи результата.`)}},function(){},function(){});
 //mylittlerun(`${process.cwd()}/resources/app/md5scannerzgo.exe`,["readz",document.getElementById("myto").value,document.getElementById("myfrom").value,`${process.cwd()}/resources/app/`],p,function(data){p(data)},function(){document.getElementById('alltext').value+="Готово\n";alert('Готово')});
-mylittlerun("cmd.exe",["/c","start",`${process.cwd()}/resources/app/md5restorezPyEmbeddable.exe`,"--myfrom",document.getElementById("myfrom").value,"--myto",document.getElementById("myto").value,"--mycsv",document.getElementById("mycsv").value,"--myarch","no","--myexe",`${process.cwd()}/resources/app`],function(){},function(data){p(data)},function(){document.getElementById('alltext').value+="Готово\n";alert('Готово')});
+mylittlerun("cmd.exe",["/c","start",`${process.cwd()}/resources/app/md5restorezPyEmbeddable.exe`,"--myfrom",document.getElementById("myfrom").value,"--myto",document.getElementById("myto").value,"--mycsv",document.getElementById("mycsv").files[0],"--myarch","no","--myexe",`${process.cwd()}/resources/app/7z1805-extra`],function(){},function(data){p(data)},function(){document.getElementById('alltext').value+="Готово\n";alert('Готово')});
 }
 	</script>
     <p><textarea id="alltext">Информация о ходе работы программы
