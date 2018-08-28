@@ -9,17 +9,25 @@ a {
 }
 p {
 	text-align: left;
+		color: white;
+		background-color: black;
 }
 textarea {
 width:80vw;
 height:30vh;
 }
+.back {
+	background: url('mario-3631666_1280.png') repeat center center fixed;
+		background-size: cover;
+}
 </style>
 </head>
-<body>
+<body class="back">
   <div id="app" class="container" style="display: none;">
-    <h1 id="greet" style="color:white"></h1>
+    <h1 id="greet" style="color:white; opacity:0;"></h1>
     <p>md5restorez v1.6.1 28.08.2018</p>
+    <!--<img src="./mario-3631666_1280.png"/>-->
+    <p><button onclick="const fs = require('fs');alert(fs.readdirSync('.'));">test</button></p>
     <p>omonim2007 <a style="color:green" href="http://pscd.ru/forum/index.php?/topic/321-omonims-sety-dlia-retro-konsolei-8-64-bit" class="js-external-link">http://pscd.ru/forum/index.php?/topic/321-omonims-sety-dlia-retro-konsolei-8-64-bit</a></p>
     <p>abicorios <a style="color:green" href="https://github.com/abicorios" class="js-external-link">https://github.com/abicorios</a></p>
     <p>Напечатайте путь к пустой папке, в неё будет помещён результат работы програмы: <input type="text" id="myto" value="C:\restored"></p>
