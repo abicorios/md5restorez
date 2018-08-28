@@ -62,12 +62,13 @@ myrun.on('close', (code) => {
 function mymain()
 {
 	const fs=require('fs');
+	var i = 0;
 reg=/^[a-zA-Z]:([\\/][^\\/<>:"|?*]+)+[\\/]?$/;
-regCsv=/^[a-zA-Z]:([\\/][^\\/<>:"|?*]+)+\.csv$/;
-if (!checkInput(document.getElementById("myto").value)){alert(`Введите правильный путь к пустой папке ${myto}.`);return 0;}
+//regCsv=/^[a-zA-Z]:([\\/][^\\/<>:"|?*]+)+\.csv$/;
+	if (!checkInput(document.getElementById("myto").value)){alert(`Введите правильный путь к пустой папке ${myto}.`);return 0;} else {console.log('i =',++i)}
 if (!checkInput(document.getElementById("myfrom").value)){alert("Введите правильный путь к папке для сканирования.");return 0;}
 	if(document.getElementById("mycsv").files[0]===undefined){alert("Выберите csv-файл")} else {
-if (!checkInputCsv(document.getElementById("mycsv").files[0].path)){alert(`Введите правильный путь к csv-файлу, вместо ошибочного значения ${document.getElementById("mycsv").files[0].path}`);return 0;}
+//if (!checkInputCsv(document.getElementById("mycsv").files[0].path)){alert(`Введите правильный путь к csv-файлу, вместо ошибочного значения ${document.getElementById("mycsv").files[0].path}`);return 0;}
 }
 if(!fs.existsSync(document.getElementById("myto").value)){alert(`Папка ${document.getElementById("myto").value} не существует, введите путь к существующей папке`);
 	if(fs.readdirSync(document.getElementById("myto").value).length!==0){alert(`Папка ${document.getElementById("myto").value} не пустая, укажите пустую папку для записи результата.`)};};
