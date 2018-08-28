@@ -1,15 +1,15 @@
 {
-  "name": "md5scannerz",
-  "productName": "md5scannerz",
+  "name": "md5restorez",
+  "productName": "md5restorez",
   "description": "Scan folder tree to csv file",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "author": "omonim2007 and abicorios",
   "copyright": "© 2018, omonim2007 and abicorios inc.",
   "homepage": "http://pscd.ru/forum/index.php?/topic/321-omonims-sety-dlia-retro-konsolei-8-64-bit/",
   "main": "app/background.js",
   "build": {
-    "appId": "com.md5scannerz",
+    "appId": "com.md5restorez",
     "win": {
 	    "target": "portable",
 	    "asar":"false"
@@ -18,7 +18,7 @@
       "app/**/*",
       "node_modules/**/*",
       "package.json",
-      "md5scannerzgo.exe",
+      "md5restorezPyEmbeddable.exe",
       "7z1805-extra"
     ],
     "directories": {
