@@ -26,13 +26,15 @@ height:30vh;
 <body class="back">
   <div id="app" class="container" style="display: none;">
     <h1 id="greet" style="color:white; opacity:0;"></h1>
-    <p>md5restorez v1.7.0 29.08.2018</p>
+    <p>md5restorez v1.7.1 29.08.2018</p>
     <p><button onclick="const fs = require('fs');alert(fs.readdirSync('.'));">test</button></p>
     <p>omonim2007 <a style="color:green" href="http://pscd.ru/forum/index.php?/topic/321-omonims-sety-dlia-retro-konsolei-8-64-bit" class="js-external-link">http://pscd.ru/forum/index.php?/topic/321-omonims-sety-dlia-retro-konsolei-8-64-bit</a></p>
     <p>abicorios <a style="color:green" href="https://github.com/abicorios" class="js-external-link">https://github.com/abicorios</a></p>
     <p>Напечатайте путь к пустой папке, в неё будет помещён результат работы програмы: <input type="text" id="myto" value="C:\restored"></p>
     <p>Напечатайте путь к папке для сканирования: <input type="text" id="myfrom" value="C:\Atari Jaguar\GoodJag (2.01)"></p>
     <p>Выберите csv-файл: <input type="file" id="mycsv"></p>
+    <p>Поставьте птичку, если нужно заархивировать результат: <input type="checkbox" id="yn"></p>
+    <p><button onclick='alert(document.getElementById("yn").checked)'>test</button></p>
     <p><button id="but" onclick='mymain()'>Start</button></p>
 	<script>
 function p(myvalue)
@@ -51,6 +53,8 @@ return regCsv.test(mystr);
 }
 function mylittlerun(command,parameters,printfunction,errorfunction,endfunction)
 {
+	p('Сейчас появится окно с ходом работы программы');
+	alert('Сейчас появится окно с ходом работы программы');
 const { spawn } = require('child_process');
 const myrun = spawn(command,parameters);
 myrun.stdout.on('data', (data) => {
@@ -72,13 +76,18 @@ function mymain()
 	const fs=require('fs');
 	var i = 0;
 reg=/^[a-zA-Z]:([\\/][^\\/<>:"|?*]+)+[\\/]?$/;
-	if (!checkInput(document.getElementById("myto").value)){alert(`Введите правильный путь к пустой папке ${myto}.`);return 0;} else {console.log('i =',++i)}
-if (!checkInput(document.getElementById("myfrom").value)){alert("Введите правильный путь к папке для сканирования.");return 0;}
-	if(document.getElementById("mycsv").files[0]===undefined){alert("Выберите csv-файл")} else {
-}
-if(!fs.existsSync(document.getElementById("myto").value)){alert(`Папка ${document.getElementById("myto").value} не существует, введите путь к существующей папке`);
-	if(fs.readdirSync(document.getElementById("myto").value).length!==0){alert(`Папка ${document.getElementById("myto").value} не пустая, укажите пустую папку для записи результата.`)};};
-mylittlerun("cmd.exe",["/c","start",`${process.cwd()}/resources/app/md5restorezPyEmbeddable.exe`,"--myfrom",document.getElementById("myfrom").value,"--myto",document.getElementById("myto").value,"--mycsv",document.getElementById("mycsv").files[0].path,"--myarch","no","--myexe",`${process.cwd()}/resources/app/7z1805-extra`],function(){},function(data){p(data)},function(){document.getElementById('alltext').value+="Готово\n";alert('Готово')});
+	if (!checkInput(document.getElementById("myto").value)){alert(`Введите правильный путь к пустой папке ${myto}.`);return 0;};
+if (!checkInput(document.getElementById("myfrom").value)){alert("Введите правильный путь к папке для сканирования.");return 0;};
+	if(document.getElementById("mycsv").files[0]===undefined){alert("Выберите csv-файл");return 0;};
+		if(!fs.existsSync(document.getElementById("myto").value)){alert(`Папка ${document.getElementById("myto").value} не существует, введите путь к существующей папке`);return 0;}else{
+			if(fs.readdirSync(document.getElementById("myto").value).length!==0){alert(`Папка ${document.getElementById("myto").value} не пустая, укажите пустую папку для записи результата.`);return 0;}};
+if(document.getElementById("yn").checked){
+	var yn="yes";
+} else {
+	var yn="no";
+};
+p("Архивировать? "+yn);
+mylittlerun("cmd.exe",["/c","start",`${process.cwd()}/resources/app/md5restorezPyEmbeddable.exe`,"--myfrom",document.getElementById("myfrom").value,"--myto",document.getElementById("myto").value,"--mycsv",document.getElementById("mycsv").files[0].path,"--myarch",yn,"--myexe",`${process.cwd()}/resources/app/7z1805-extra`],function(){},function(data){p(data)},function(){document.getElementById('alltext').value+="Готово\n";alert('Готово')});
 }
 	</script>
     <p><textarea id="alltext">Информация о ходе работы программы
